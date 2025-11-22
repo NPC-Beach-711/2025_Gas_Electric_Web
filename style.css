@@ -144,13 +144,35 @@ header {
 .hero {
   background: linear-gradient(135deg, var(--primary-color), #005793);
   color: #ffffff;
-  padding: 2.5rem 0 2rem;
+  padding: 3rem 0;
 }
 
+/* FORCE image left + text right on desktop */
 .hero-inner {
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  flex-direction: row;        /* <<< THIS FIXES YOUR PROBLEM */
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;            /* Allows it to break nicely if needed */
+}
+
+/* Left side image */
+.hero-media {
+  flex: 0 0 auto;             /* Don't stretch */
+  max-width: 180px;           /* Final image width (matches your example) */
+}
+
+.hero-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Right side text area */
+.hero-content {
+  flex: 1 1 300px;
 }
 
 .hero-text h1 {
@@ -164,45 +186,39 @@ header {
   font-weight: 400;
   font-size: clamp(1.1rem, 2vw, 1.3rem);
   color: #e2ecf5;
+  margin-bottom: 1.5rem;
 }
 
+/* Button area */
 .hero-actions {
+  margin-top: 0.5rem;
   display: flex;
   flex-wrap: wrap;
   gap: 0.8rem;
 }
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+/* MOBILE: stack image above text */
+@media (max-width: 768px) {
+  .hero-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-media {
+    max-width: 60%;
+  }
+}
+.hero-actions a.btn {
+  display: inline-flex !important;
+  background-color: #ffffff !important;
+  color: var(--primary-color) !important;
+  border: 1px solid transparent;
   padding: 0.5rem 1.05rem;
   border-radius: 999px;
   font-size: 0.9rem;
   font-weight: 500;
-  border: 1px solid transparent;
-  cursor: pointer;
-  text-decoration: none;
   white-space: nowrap;
 }
-
-.btn-primary {
-  background-color: #ffffff;
-  color: var(--primary-color);
-}
-
-.btn-outline {
-  background-color: transparent;
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.7);
-}
-
-.btn:hover,
-.btn:focus {
-  filter: brightness(0.97);
-  text-decoration: none;
-}
-
 /* =========================
    MAIN CONTENT
    ========================= */
