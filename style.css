@@ -219,6 +219,12 @@ header {
   font-weight: 500;
   white-space: nowrap;
 }
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* space between buttons */
+}
 /* =========================
    MAIN CONTENT
    ========================= */
